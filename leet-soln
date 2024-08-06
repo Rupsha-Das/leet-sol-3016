@@ -1,0 +1,13 @@
+class Solution:
+    def minimumPushes(self, word: str) -> int:
+        hmap = Counter(word)
+        ans = 0
+        i = 1
+        hmap =  sorted(hmap.items(),reverse=True, key=lambda kv: (kv[1], kv[0]))
+        hmap = dict(hmap)
+        for i, x in enumerate(hmap.keys()):
+            for k in range(4):
+                if i // 8 == k:
+                    ans += hmap[x]*(k+1)
+                    break
+        return ans
